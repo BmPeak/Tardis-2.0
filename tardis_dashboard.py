@@ -13,10 +13,8 @@ def load_model():
     return joblib.load("model.pkl")
 
 def time_to_minutes(t):
-    # Accept int hour, convert to minutes (e.g. 12 -> 720)
     if isinstance(t, int):
         return t * 60
-    # or if string like "00:03"
     if isinstance(t, str) and ":" in t:
         h, m = map(int, t.split(":"))
         return h * 60 + m
@@ -95,3 +93,7 @@ st.subheader("🔥 Correlation Heatmap")
 fig2, ax2 = plt.subplots(figsize=(10, 8))
 sns.heatmap(df.corr(numeric_only=True), annot=True, cmap="coolwarm", ax=ax2)
 st.pyplot(fig2)
+
+## Pour lancer le dashboard il suffit d'avoir fait les étapes précédentes donc le nettoyage et le model.
+## Puis il suffit de faire la commande "streamlit run tardis_dashboard.py" dans le terminal.
+## Vous pouvez installer watchdog pour ouvrir la fenêtre directement. Sinon il suffit de copier l'URL dans le terminal. Exemple : http//localhost:XXXX.
