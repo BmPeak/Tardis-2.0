@@ -41,6 +41,7 @@ st.title("🚆 TARDIS - Dashboard de la prédiction du retard des trains")
 
 st.sidebar.header("📥 Prédiction du retard")
 
+# Création des boxes pour faire les choix.
 departure_station = st.sidebar.selectbox("Gare de départ", df["Departure station"].unique())
 arrival_station = st.sidebar.selectbox("Gare d'arrivée", df["Arrival station"].unique())
 avg_journey_time = st.sidebar.slider("Durée moyenne du trajet (min)", 10, 300, 60)
@@ -49,6 +50,7 @@ day_of_week = st.sidebar.selectbox("Jour de la semaine", day_order)
 avg_delay_hour = st.sidebar.slider("Heure moyenne de départ (retard)", 0, 23, 12)
 avg_delay_late_hour = st.sidebar.slider("Heure moyenne de départ (trains en retard)", 0, 23, 12)
 
+# Envoie des données pour le model.
 input_data = pd.DataFrame([{
     "Departure station": departure_station,
     "Arrival station": arrival_station,
@@ -67,6 +69,7 @@ if st.sidebar.button("Prédire"):
         st.sidebar.error(f"Prediction failed: {e}")
 
 # --- Main Dashboard ---
+# Graphiques avec les chiffres moyen.
 
 st.subheader("📊 Résumé des statistiques")
 col1, col2, col3 = st.columns(3)
